@@ -9,22 +9,34 @@
 #import <UIKit/UIKit.h>
 #import "PrefixHeader.pch"
 
-
-@protocol DropDownTableListDataSource <NSObject>
-
+@class DropDownTableList;
+@protocol DropDownTableListDelegate <NSObject>
 @optional
 
 @end
+@protocol DropDownTableListDataSource <NSObject>
+@required
+-(NSInteger)dropDownTableList:(DropDownTableList *)dropDownTableList numberOfRowsInSection:(NSInteger)section;
+//-(UITableViewCell *)dropDownTableList:(DropDownTableList *)dropDownTableList cellForRowAtIndexPath:(NSIndexPath *)indexPah;
+-(UIView *)dropDownTableList:(DropDownTableList *)dropDownTableList contentViewForCell:(UIView *)cell forText:(NSString *)text forIndexPath:(NSIndexPath *)indexPath;
+
+@optional
+@end
 
 
-@interface DropDownTableList : UIView
-////<UITableViewDataSource,UITableViewDelegate>
 
+
+@interface DropDownTableList : UIView<UITableViewDataSource,UITableViewDelegate>
+{  BOOL tableViewCellTouched;
+}
+@property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)UIView *DropDownViewLayer;
+@property (nonatomic, strong) UIButton * Button;
 
 -(instancetype)initDrawBottomFrame:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
 +(instancetype)drawBottomFrame:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height;
 
-@property(nonatomic,weak)id<DropDownTableListDataSource> dataSource;
-
+@property(nonatomic,weak)id<DropDownTableListDelegate> delegate;
+@property(nonatomic,weak)id<DropDownTableListDataSource>dataSource;
 
 @end

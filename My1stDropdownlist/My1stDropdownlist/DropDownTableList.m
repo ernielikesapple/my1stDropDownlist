@@ -10,11 +10,6 @@
 
 @interface DropDownTableList ()<UIGestureRecognizerDelegate>
 
-@property (nonatomic,strong)UITableView *tableView;
-@property (nonatomic,strong)UIView *DropDownViewLayer;
-
-@property (nonatomic, strong) UIButton * Button;
-
 
 @end
 
@@ -25,18 +20,8 @@
 
 -(instancetype)initDrawBottomFrame:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height{
     self = [super initWithFrame:CGRectMake(x, y, width, height)];
-    if(self){
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 200, 0) style:UITableViewStyleGrouped];
-        self.tableView.backgroundColor = UniversalColor(255,228,196);
-        self.tableView.tag = 0;
-//        self.tableView = self;
-//        self.tableView = self;
-       // self.DropDownViewLayer = [[UIView alloc] initWithFrame:CGRectMake(10, 10,10, 10)];
-        [self addSubview:self.tableView];
-        
-        
- 
-    }
+//    if(self){
+//    }
     return self;
 }
 
@@ -47,15 +32,29 @@
 
 
 
--(void)setDataSource:(id<DropDownTableListDataSource>)dataSource{
+-(void)setDelegate:(id<DropDownTableListDelegate>)delegate{
+    //tableViewLayout related
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 200, 0) style:UITableViewStyleGrouped];
+    self.tableView.backgroundColor = UniversalColor(255,228,196);
+    self.tableView.tag = 0;
+    tableViewCellTouched = NO;
+//    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+//    // self.DropDownViewLayer = [[UIView alloc] initWithFrame:CGRectMake(10, 10,10, 10)];
+    [self addSubview:self.tableView];
+
+    
+    
+    
+    
     
     //button layout related;
     self.Button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [self.Button setImage:[UIImage imageNamed:@"arrowImageLeft"] forState:UIControlStateNormal];
-    [self.Button setImage:[UIImage imageNamed:@"arrowImageLeft"] forState:UIControlStateHighlighted];
-    [self.Button setImage:[UIImage imageNamed:@"arrowImageDown"] forState:UIControlStateSelected];
-    [self.Button setImage:[UIImage imageNamed:@"arrowImageDown"] forState:UIControlStateSelected | UIControlStateHighlighted];
+//    [self.Button setImage:[UIImage imageNamed:@"arrowImageLeft"] forState:UIControlStateNormal];
+//    [self.Button setImage:[UIImage imageNamed:@"arrowImageLeft"] forState:UIControlStateHighlighted];
+//    [self.Button setImage:[UIImage imageNamed:@"arrowImageDown"] forState:UIControlStateSelected];
+//    [self.Button setImage:[UIImage imageNamed:@"arrowImageDown"] forState:UIControlStateSelected | UIControlStateHighlighted];
     
     [self.Button setTitle:@"Please Choose Your Info" forState:UIControlStateNormal];
     [self.Button.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -91,7 +90,7 @@
     //单指单击
     tapForTablelist.numberOfTapsRequired = 1;     //taps 次数    //这个参数可以配置单指双击    双指单机  双指双击  详见http://blog.sina.com.cn/s/blog_7c336a8301011b3e.html
     tapForTablelist.numberOfTouchesRequired = 1;  //taps手指数
-   // tap.delegate =self;
+    tapForTablelist.delegate = self;
     [self.tableView addGestureRecognizer:tapForTablelist];
 
     
@@ -141,8 +140,6 @@
     
     
 
-
-
 //按钮点击事件
 -(void)buttonClicked:(UITapGestureRecognizer *)sender{
    
@@ -162,63 +159,22 @@
 
 
 
-
-
-
 //下拉菜单点击事件
 -(void)tableViewClicked:( UITapGestureRecognizer  *)sender{
-
-    if (self.tableView.tag == 1) {
-    
-        self.tableView.tag = 0;
-        self.Button.tag = 0;
-     
-        [self stateTableClosedEvent];
-    
+     if(self.tableView.tag == 1) {
+       //self.tableView.tag = 0;
+       // self.Button.tag = 0;
+     if (!tableViewCellTouched) {
+            self.tableView.backgroundColor = UniversalColor(25,228,196);
+            tableViewCellTouched = YES;
+            NSLog(@" -------yes");
+        }else{
+            self.tableView.backgroundColor = UniversalColor(255,228,196);
+            tableViewCellTouched = NO;
+            NSLog(@" -------no");
+        }
+    //  [self stateTableClosedEvent];
     }
-}
-
--(void)stateTableOpenEvent{
-    //        self.Button.state = [UIButton ];
-    
-    [UIView animateWithDuration:(0.3) animations:^{
-        //图片旋转
-        // self.Button.imageView.transform = CGAffineTransformMakeRotation(M_PI/2);
-        //                                   CGAffineTransformMakeRotation(M_PI_2);
-        //self.Button.state =[UIControl UIControlStateSelected];
-        
-        CGRect frame = CGRectMake(20, self.Button.frame.size.height+25, 200,200);
-        self.tableView.frame = frame;
-        self.tableView.clipsToBounds=YES;
-        self.tableView.layer.cornerRadius=10;
-        
-        
-        self.Button.backgroundColor = UniversalColor(255,192,203);
-        //[[self getCurrentWindowView] addSubview:self.tableView];
-        NSLog(@"菜单打开!!!!!11111111");
-    }];
-    [UIView animateWithDuration:(3) animations:^{
-        [self.Button setImage:[UIImage imageNamed:@"arrowImageDown"] forState:UIControlStateNormal];
-    }];
-
-}
--(void)stateTableClosedEvent{
-    
-    [UIView animateWithDuration:(0.3) animations:^{
-        
-        CGRect frame = CGRectMake(20, 20, 200, 0);
-        self.tableView.frame = frame;
-        
-        
-        self.Button.backgroundColor = UniversalColor(238,232,170);
-        //[[self getCurrentWindowView] addSubview:self.tableView];
-        NSLog(@"菜单关上!!!222222!");
-    }];
-    
-    [UIView animateWithDuration:(3) animations:^{
-        [self.Button setImage:[UIImage imageNamed:@"arrowImageLeft"] forState:UIControlStateNormal];
-    }];
-
 }
 
 //下拉菜单滑动事件// UITapGestureRecognizer
@@ -228,29 +184,12 @@
      if (sender.direction == UISwipeGestureRecognizerDirectionUp) {
          self.tableView.tag = 0;
          self.Button.tag = 0;
-    
-    
-        [UIView animateWithDuration:(0.3) animations:^{
-        CGRect frame = CGRectMake(20, 20, 200, 0);
-        self.tableView.frame = frame;
-        self.tableView.backgroundColor = UniversalColor(255,228,196);
-
-        self.Button.backgroundColor = UniversalColor(238,232,170);
-            
-        }];
-       
-        
-        [UIView animateWithDuration:(3) animations:^{
-            [self.Button setImage:[UIImage imageNamed:@"arrowImageLeft"] forState:UIControlStateNormal];
-        }];
-        
-                //选择后重设button标题
+         [self stateTableClosedEvent];
+         self.tableView.backgroundColor = UniversalColor(255,228,196);
+          //选择后重设button标题
 //        [self.Button setTitle:@"Choose done!!!" forState:UIControlStateNormal];
 //        [self.Button.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        
-        NSLog(@"菜单上选了事件并且关住!!!!!3333333333");
-    
-    
+        NSLog(@"菜单上滑并且关住!!!!!3333333333");
         //    }else{
 //       
 //        self.tableView.tag = 0;
@@ -270,19 +209,11 @@
        
         // self.tableView.tag = 0;
         //self.Button.tag = 0;
-
-    
     }else if(sender.direction == UISwipeGestureRecognizerDirectionLeft) {
-        
         self.tableView.backgroundColor = UniversalColor(55,28,96);
-        
         //self.tableView.tag = 0;
         //self.Button.tag = 0;
-        
     }
-      
-      
-      
   }
 }
 
@@ -293,6 +224,52 @@
 }
 
 
+
+
+
+
+
+-(void)stateTableOpenEvent{
+    //        self.Button.state = [UIButton ];
+    
+    [UIView animateWithDuration:(0.3) animations:^{
+        //图片旋转
+        // self.Button.imageView.transform = CGAffineTransformMakeRotation(M_PI/2);
+        //                                   CGAffineTransformMakeRotation(M_PI_2);
+        //self.Button.state =[UIControl UIControlStateSelected];
+        
+        CGRect frame = CGRectMake(20, self.Button.frame.size.height+25, 200,200);
+        self.tableView.frame = frame;
+        self.tableView.clipsToBounds=YES;
+        self.tableView.layer.cornerRadius=10;
+        
+        self.Button.backgroundColor = UniversalColor(255,192,203);
+        //[[self getCurrentWindowView] addSubview:self.tableView];
+        NSLog(@"菜单打开!!!!!11111111");
+    }];
+    [UIView animateWithDuration:(3) animations:^{
+        [self.Button setImage:[UIImage imageNamed:@"arrowImageDown"] forState:UIControlStateNormal];
+    }];
+    
+}
+-(void)stateTableClosedEvent{
+    
+    [UIView animateWithDuration:(0.3) animations:^{
+        
+        CGRect frame = CGRectMake(20, 20, 200, 0);
+        self.tableView.frame = frame;
+        //[self.tableView removeFromSuperview];
+        
+        self.Button.backgroundColor = UniversalColor(238,232,170);
+        //[[self getCurrentWindowView] addSubview:self.tableView];
+        NSLog(@"菜单关上!!!222222!");
+    }];
+    
+    [UIView animateWithDuration:(3) animations:^{
+        [self.Button setImage:[UIImage imageNamed:@"arrowImageLeft"] forState:UIControlStateNormal];
+    }];
+    
+}
 
 //-(UIView *)DropDownViewLayer{
 //    if (self.DropDownViewLayer == nil) {
@@ -306,8 +283,6 @@
 //    
 //    return self.DropDownViewLayer;
 //}
-
-
 
 
 ////???????????????????????????
@@ -327,5 +302,35 @@
 //
 //    return window;
 //}
+
+
+
+
+#pragma tableView related
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"executed~~~~~~~~1");
+    return [self.dataSource dropDownTableList:self numberOfRowsInSection:0];
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString* cellIdentifier = @"cellIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier]; //iOS 5 function
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    }
+    
+     UIView *view = cell.contentView;
+     //??/??
+//    for (UIView *views in [cell.contentView subviews]) {
+//        [views removeFromSuperview];
+//    }
+    [cell.contentView addSubview:[self.dataSource dropDownTableList:self contentViewForCell:view forText:@"test" forIndexPath:indexPath]];
+    
+    
+    return cell;
+
+    
+}
 
 @end
