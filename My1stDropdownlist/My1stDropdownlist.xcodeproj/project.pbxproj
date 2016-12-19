@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6DBDE2011E0773470026D8BE /* exampleDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBDE2001E0773470026D8BE /* exampleDataModel.m */; };
 		6DC928C81E014C2E00DA7918 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC928C71E014C2E00DA7918 /* main.m */; };
 		6DC928CB1E014C2E00DA7918 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC928CA1E014C2E00DA7918 /* AppDelegate.m */; };
 		6DC928CE1E014C2E00DA7918 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC928CD1E014C2E00DA7918 /* MainViewController.m */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6DBDE1FF1E0773470026D8BE /* exampleDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exampleDataModel.h; sourceTree = "<group>"; };
+		6DBDE2001E0773470026D8BE /* exampleDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = exampleDataModel.m; sourceTree = "<group>"; };
 		6DC928C31E014C2E00DA7918 /* My1stDropdownlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = My1stDropdownlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC928C71E014C2E00DA7918 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6DC928C91E014C2E00DA7918 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -41,6 +44,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6DBDE1FE1E0772E70026D8BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6DBDE1FF1E0773470026D8BE /* exampleDataModel.h */,
+				6DBDE2001E0773470026D8BE /* exampleDataModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		6DC928BA1E014C2E00DA7918 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +72,7 @@
 		6DC928C51E014C2E00DA7918 /* My1stDropdownlist */ = {
 			isa = PBXGroup;
 			children = (
+				6DBDE1FE1E0772E70026D8BE /* Model */,
 				6DC928DD1E014C4100DA7918 /* DropdownlistWidget */,
 				6DC928C91E014C2E00DA7918 /* AppDelegate.h */,
 				6DC928CA1E014C2E00DA7918 /* AppDelegate.m */,
@@ -166,6 +179,7 @@
 				6DC928CB1E014C2E00DA7918 /* AppDelegate.m in Sources */,
 				6DC928C81E014C2E00DA7918 /* main.m in Sources */,
 				6DC928E01E014FB900DA7918 /* DropDownTableList.m in Sources */,
+				6DBDE2011E0773470026D8BE /* exampleDataModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
