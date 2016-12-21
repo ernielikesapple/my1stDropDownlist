@@ -27,8 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    //dropDownList的数据来源  💣💣💣💣💣todo:用后台api请求到的responseObject.array替换
     self.array = @[@"A.when will you...",@"B.would you like..."];
     
     self.arrayHoldingModel = [[NSMutableArray alloc] init];
@@ -44,7 +42,7 @@
     self.dropDownList1.delegate = self;
     self.dropDownList1.dataSource = self;
     [self.view addSubview:self.dropDownList1];
-    
+
 }
 
 
