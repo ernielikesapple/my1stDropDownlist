@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6DBDE2011E0773470026D8BE /* exampleDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBDE2001E0773470026D8BE /* exampleDataModel.m */; };
+		6DBDE2051E08B55F0026D8BE /* CheckBoxButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBDE2041E08B55F0026D8BE /* CheckBoxButton.m */; };
+		6DBDE20C1E0A04B50026D8BE /* dataModelWithSelectedState.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBDE20B1E0A04B50026D8BE /* dataModelWithSelectedState.m */; };
 		6DC928C81E014C2E00DA7918 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC928C71E014C2E00DA7918 /* main.m */; };
 		6DC928CB1E014C2E00DA7918 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC928CA1E014C2E00DA7918 /* AppDelegate.m */; };
 		6DC928CE1E014C2E00DA7918 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC928CD1E014C2E00DA7918 /* MainViewController.m */; };
@@ -17,8 +18,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6DBDE1FF1E0773470026D8BE /* exampleDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exampleDataModel.h; sourceTree = "<group>"; };
-		6DBDE2001E0773470026D8BE /* exampleDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = exampleDataModel.m; sourceTree = "<group>"; };
+		6DBDE2031E08B55F0026D8BE /* CheckBoxButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBoxButton.h; sourceTree = "<group>"; };
+		6DBDE2041E08B55F0026D8BE /* CheckBoxButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckBoxButton.m; sourceTree = "<group>"; };
+		6DBDE2091E08C1900026D8BE /* UtilitySurfaceRelated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilitySurfaceRelated.h; sourceTree = "<group>"; };
+		6DBDE20A1E0A04B50026D8BE /* dataModelWithSelectedState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataModelWithSelectedState.h; sourceTree = "<group>"; };
+		6DBDE20B1E0A04B50026D8BE /* dataModelWithSelectedState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dataModelWithSelectedState.m; sourceTree = "<group>"; };
 		6DC928C31E014C2E00DA7918 /* My1stDropdownlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = My1stDropdownlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC928C71E014C2E00DA7918 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6DC928C91E014C2E00DA7918 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -30,7 +34,6 @@
 		6DC928D71E014C2E00DA7918 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DC928DE1E014FB900DA7918 /* DropDownTableList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownTableList.h; sourceTree = "<group>"; };
 		6DC928DF1E014FB900DA7918 /* DropDownTableList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownTableList.m; sourceTree = "<group>"; };
-		6DC928E11E01523100DA7918 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,10 +50,27 @@
 		6DBDE1FE1E0772E70026D8BE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6DBDE1FF1E0773470026D8BE /* exampleDataModel.h */,
-				6DBDE2001E0773470026D8BE /* exampleDataModel.m */,
+				6DBDE20A1E0A04B50026D8BE /* dataModelWithSelectedState.h */,
+				6DBDE20B1E0A04B50026D8BE /* dataModelWithSelectedState.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		6DBDE2021E08B4420026D8BE /* CheckBoxWidget */ = {
+			isa = PBXGroup;
+			children = (
+				6DBDE2031E08B55F0026D8BE /* CheckBoxButton.h */,
+				6DBDE2041E08B55F0026D8BE /* CheckBoxButton.m */,
+			);
+			name = CheckBoxWidget;
+			sourceTree = "<group>";
+		};
+		6DBDE2061E08C0410026D8BE /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				6DBDE2091E08C1900026D8BE /* UtilitySurfaceRelated.h */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		6DC928BA1E014C2E00DA7918 = {
@@ -72,6 +92,8 @@
 		6DC928C51E014C2E00DA7918 /* My1stDropdownlist */ = {
 			isa = PBXGroup;
 			children = (
+				6DBDE2021E08B4420026D8BE /* CheckBoxWidget */,
+				6DBDE2061E08C0410026D8BE /* Utility */,
 				6DBDE1FE1E0772E70026D8BE /* Model */,
 				6DC928DD1E014C4100DA7918 /* DropdownlistWidget */,
 				6DC928C91E014C2E00DA7918 /* AppDelegate.h */,
@@ -99,7 +121,6 @@
 			children = (
 				6DC928DE1E014FB900DA7918 /* DropDownTableList.h */,
 				6DC928DF1E014FB900DA7918 /* DropDownTableList.m */,
-				6DC928E11E01523100DA7918 /* PrefixHeader.pch */,
 			);
 			name = DropdownlistWidget;
 			sourceTree = "<group>";
@@ -176,10 +197,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DC928CE1E014C2E00DA7918 /* MainViewController.m in Sources */,
+				6DBDE20C1E0A04B50026D8BE /* dataModelWithSelectedState.m in Sources */,
 				6DC928CB1E014C2E00DA7918 /* AppDelegate.m in Sources */,
 				6DC928C81E014C2E00DA7918 /* main.m in Sources */,
 				6DC928E01E014FB900DA7918 /* DropDownTableList.m in Sources */,
-				6DBDE2011E0773470026D8BE /* exampleDataModel.m in Sources */,
+				6DBDE2051E08B55F0026D8BE /* CheckBoxButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

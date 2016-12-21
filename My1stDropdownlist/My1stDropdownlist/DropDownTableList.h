@@ -7,23 +7,40 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PrefixHeader.pch"
+#import "UtilitySurfaceRelated.h"
+#import "dataModelWithSelectedState.h"
 
 @class DropDownTableList;
 @protocol DropDownTableListDelegate <NSObject>
 
-
+//💣💣💣💣💣💣💣💣💣为什么这句加到这里有问题？？？？？？？//答：不要轻易再.h中 轻易用setDelgegate,todo:搞清楚究竟什么是重写setDelegate
+@optional
+-(void)dropDownTableList:(DropDownTableList *)dropDownTableList didSelectedRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
+
+
+
+
+
+
 
 @protocol DropDownTableListDataSource <NSObject>
-@required
+//@required
+@optional
 -(NSInteger)dropDownTableList:(DropDownTableList *)dropDownTableList numberOfRowsInSection:(NSInteger)section;
 //-(UITableViewCell *)dropDownTableList:(DropDownTableList *)dropDownTableList cellForRowAtIndexPath:(NSIndexPath *)indexPah;
+
+//set up dropDownTableListCell method 1:
+//expose user a more flexible Interface to set up the cell
 -(UIView *)dropDownTableList:(DropDownTableList *)dropDownTableList contentViewForCell:(UIView *)cell forIndexPath:(NSIndexPath *)indexPath;
 
--(void)dropDownTableList:(DropDownTableList *)dropDownTableList didSelectedRowAtIndexPath:(NSIndexPath *)indexPath;
-@optional
+
+//set up dropDownTableListCell method 2:
+//a much more simpler interface to set up the dropDownListCell
+-(dataModelWithSelectedState *)dropDownTableList:(DropDownTableList *)dropDownTableList  setDropDownCellUsingModelAtIndexPath:(NSIndexPath *)indexPath;
 @end
+
+
 
 
 
