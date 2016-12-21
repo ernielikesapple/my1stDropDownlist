@@ -46,6 +46,16 @@
     self.Button.layer.cornerRadius=10;
     self.Button.backgroundColor = UniversalColor(238,232,170);
     [self addSubview:self.Button];
+    
+    //method1:?????????????
+    UIEdgeInsets insets = UIEdgeInsetsMake(self.inputViewController.topLayoutGuide.length,
+                                           0.0,
+                                           self.inputViewController.bottomLayoutGuide.length,
+                                           0.0);
+    self.tableView.contentInset = insets;
+    //method2:?????
+    //self.inputViewController.automaticallyAdjustsScrollViewInsets = NO;
+    
     UITapGestureRecognizer *tapForButton = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(buttonClicked:)];
     tapForButton.numberOfTapsRequired = 1;
     tapForButton.numberOfTouchesRequired = 1;
